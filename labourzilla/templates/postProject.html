@@ -1,0 +1,58 @@
+{% extends 'main.html' %}
+    {% block style %}
+    <link rel="stylesheet" href="/media/css/main.css" />
+    <link rel="stylesheet" href="/media/css/postProject.css" />
+    {% endblock style %}
+    {% block title %}Post Project{% endblock title %}
+  {% block content %}
+    <section class="main-container">
+      <div class="wrapper"> 
+        <div class="heading">
+          <h3>Labourzilla</h3>
+          <h2>Tell us what you need done?</h2>
+          <p>
+            Contact skilled workers within minutes. View profiles, ratings,
+            portfolios and chat with them. <br> Pay the workers only when you are
+            100% satisfied with their work.
+          </p>
+        </div>
+      </div>
+      <div class="container">
+        <form method="POST"  class="project-form" enctype="multipart/form-data">
+            {% csrf_token %}
+          <h2>Choose a name for your project</h2>
+          <input name ='title' type="text" placeholder="eg. House renovation" id="name"/>
+          <h2>Tell us more about your project</h2>
+          <br />
+          <textarea name='describe'
+            rows="6"
+            cols="80"
+            placeholder="Describe your project here..." id="desc"
+          ></textarea>
+          <div class="upload">
+            <input type="file"  name="file" />
+            <p>
+              Drag and drop any image or documents taht might be helpful in
+              explaining your brief here <br />
+              (Max file size:24MB)
+            </p>
+          </div>
+          <div class="budget">
+            <h2>Enter the budget for your project</h2>
+            <input name='min_price' type="text" placeholder="min" class="min-budget">
+            <input name='max_price' type="text" placeholder="max" class="max-budget">
+          </div>
+
+          <select name="category" id="category" class="drop-category">
+            <option value="select">Select a category</option>
+            <option value="building" class="drop-options">House Building</option>
+            <option value="renovation" class="drop-options">House Renovation</option>
+            <option value="small work" class="drop-options">House small work</option>
+          </select>
+          <button type='submit' class="next">Submit</button>
+        </form>
+        <!-- <img src="/media/imgs/work.jpg" class="work-img" alt=""> -->
+        
+      </div>
+    </section>
+  {% endblock content %}

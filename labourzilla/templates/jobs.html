@@ -1,0 +1,80 @@
+{% extends "main.html" %}
+{% block style %}
+<link rel="stylesheet" href="/media/css/jobs.css" />
+<link rel="stylesheet" href="/media/css/main.css" />
+{% endblock style %}
+{% block title %}Jobs{% endblock title %}
+{% block content %}
+    <div class="jobs-navbar">
+      <h1>Top jobs</h1>
+      <div class="jobs-navbar-btns">
+        <button class="jobs-navbar-btn"><a href="#">I want to hire</a></button>
+        <button class="jobs-navbar-btn"><a href="#">I want to work</a></button>
+      </div>
+    </div>
+    <div class="jobs-main">
+      <div class="filter">
+        <h4>My recent searches</h4>
+        <hr />
+        <span>Filter by</span>
+        <h3>Budget</h3>
+        <input type="checkbox" />
+        <label for="price" id="fixed-p-checkbox">Fixed Price Projects</label>
+        <br />
+        <input type="text" placeholder="min" />
+        <input type="text" placeholder="max" />
+        <br />
+        <input type="checkbox" />
+        <label for="hour">Hourly Project</label>
+        <br />
+        <input type="text" placeholder="min" />
+        <input type="text" placeholder="max" />
+        <hr />
+        <h3>Type</h3>
+        <input type="checkbox" name="local" id="local" />
+        <label for="work">Local Work</label>
+        <br />
+        <input type="checkbox" name="featured" id="featured" />
+        <label for="work">Featured Jobs</label>
+        <br />
+        <input type="checkbox" name="Recuriter" id="recruiter" />
+        <label for="work">Recruiter Jobs</label>
+        <br />
+        <input type="checkbox" name="local" id="full-time" />
+        <label for="work">Full time Work</label>
+        <br />
+      </div>
+      <div class="jobs">
+        <div class="search">
+          <img src="/media/imgs/search-icon.png" alt="" />
+          <input type="text" placeholder="Search" />
+          <button>Search</button>
+        </div>
+        <hr />
+        {% for job in all_jobs %}
+        <div class="job-post">
+          <div class="job-post-content">
+            <div class="job-post-content-top">
+              <h4>{{job.title}}</h4>
+              <a href="">
+                <div class="link">
+                  <img src="/media/imgs/check.png" alt="" />
+                  Verified
+                </div>
+              </a>
+            </div>
+            <div class="job-post-content-middle">{{job.description}}</div>
+            <div class="job-post-content-bottom">
+              <h5>#{{job.category}}</h5>
+            </div>
+          </div>
+          <div class="job-post-price">
+            <span>₹{{job.min_price}}-{{job.max_price}} INR</span>
+            <a href='{% url "bid" job.id %}'><button>Bid Now</button></a>
+          </div>
+        </div>
+        <hr id="job-post-line">
+        {% endfor %}
+      </div>
+    </div>
+{% endblock content %}
